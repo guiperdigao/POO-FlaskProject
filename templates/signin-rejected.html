@@ -1,0 +1,40 @@
+{% extends 'form-layout.html' %}
+{% block form %}
+{% from "_formhelpers.html" import render_field %}
+
+<div class="text-center mb-4">
+  <img class="mb-4" src="paper-plane.png" alt="" width="72" height="72">
+  <h1 class="h3 mb-3 font-weight-normal">New User Registration</h1>
+  <p>Enter your information and then you're ready to travel away!</p>
+</div>
+
+
+<div class="form-label-group">
+  <input type="text" id="inputName" name="name" class="form-control" placeholder="Name" required autofocus>
+  {{render_field(form.name, class_="form-control")}}
+  <label for="inputName">Name</label>
+</div>
+
+<div class="form-label-group">
+  <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required>
+  {{render_field(form.name, class_="form-control")}}
+  <label for="inputEmail">Email address</label>
+</div>
+
+<div class="form-label-group">
+  <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" required>
+  <label for="inputUsername">Username</label>
+</div>
+
+<div class="form-label-group">
+  <input type="password" id="inputPassword" name="pass " class="form-control" placeholder="Password" required>
+  <label for="inputPassword">Password</label>
+</div>
+
+<div class="form-label-group">
+  <input type="password" id="inputPasswordAgain" name ="confirm" class="form-control" placeholder="Confirm your Password" required>
+  <label for="inputPasswordAgain">Confirm your Password</label>
+</div>
+
+<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+{% endblock %}
