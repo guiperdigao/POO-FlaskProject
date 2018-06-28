@@ -21,3 +21,4 @@ app.config['GOOGLEMAPS_KEY'] = "SUA_CHAVE_API"
 app.secret_key = "SUA_CHAVE_API"
 GoogleMaps(app, key="SUA_CHAVE_API")
 ```
+Para rodar o site, execute a função app.py depois de feitas as mudanças de API
