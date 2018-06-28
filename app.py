@@ -33,6 +33,8 @@ def need_input():
             data[field] = "(unknown)"
         else:
                 data[field] = request.form[field]
+    if data['transporte'] == "":
+       data['transporte'] = "driving"
     origem=[]
     destinos=[]
     for field in ('origin', 'destination1', 'destination2', 'destination3', 'destination4', 'destination5'):
@@ -42,7 +44,10 @@ def need_input():
 
     coord1 = gmaps.geocode(data['origin'])
     distancia = gmaps.distance_matrix(origem,destinos,data['transporte'])
-
+    for i in range(len(origem)):
+        for j in range(len(origem)):
+            if 'ZERO_RESULTS' == distancia['rows'][i]['elements'][j]['status']:
+                return render_template('no_routes.html')
     ## Distância local i para local j:  distancia['rows'][i]['elements'][j]['distance']['value']
     ## Tempo local i para local j:  distancia['rows'][i]['elements'][j]['duration']['value']
 
