@@ -9,6 +9,6 @@ Para rodar em localhost ativar as seguinte API's do Google:
 
 e susbstituir sua chave na linha 19 de index.html
 
-'''
+'''html
 <script defer src="https://maps.googleapis.com/maps/api/js?libraries=places&language=en&key=SUA_CHAVE_API" type="text/javascript"></script>
 '''
