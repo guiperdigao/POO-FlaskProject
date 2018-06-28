@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Triptipz" content="">
+    <meta name="Guilherme" content="">
+
+    <title>Planeje seu dia de viajem</title>
+
+    <!-- Carrega os sheets necessários para a página -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="/css/starter-template.css" rel="stylesheet">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script defer src="https://maps.googleapis.com/maps/api/js?libraries=places&language=en&key=AIzaSyDF9_lYlA3O1z8KfOH0nsoFOc8eRrHdqz8" type="text/javascript"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" id="bootstrap-css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+    <!-- Insere o título -->
+    <div class="container">
+        <div class="row">
+            <div class="jumbotron">
+                <h1>Melhor rota para sua viagem!</h1>
+            </div>
+
+            <!-- Insere a barra de navegação na parte superior do Site -->
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Triptipz</a>
+                    </div>
+                    <div id="navbar" class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="index.html">Home</a></li>
+                            <li><a href="/cgi-bin/fetch_page.py?page=sobre">Sobre</a></li>
+                            <li><a href="/cgi-bin/fetch_page.py?page=contato">Contato</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <br>
+            <br>
+
+            <!-- Insere o painel de entradas do usuário -->
+            <div class="row">
+                <div class="col-md-8 col-sm-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Insira suas informações nos campos abaixo</h3>
+                        </div>
+
+
+                        <div class="panel-body">
+
+                            <form method=POST action="http://localhost:5000/result">
+                                <!-- Insere o painel para colocar o nome -->
+                                <div class="container">
+                                    <span class="label label-default">Nome</span>
+                                    <p><input type="text" name=nome placeholder="Digite seu Nome..." required></p>
+                                </div>
+                                <!-- Insere o painel para colocar seu hotel -->
+                                <div class="form-group">
+                                    <label>Origem: </label> <input class="form-control" id="from_places" placeholder="Escreva um local" />
+                                    <input type="hidden" id="origin" name="origin" required />
+                                </div>
+
+                                <!-- Insere o painel para colocar seu local1 -->
+                                <div class="form-group">
+                                    <label>Destino 1: </label> <input class="form-control" id="to_places1" placeholder="Escreva um local" />
+                                    <input type="hidden" id="destination1" name="destination1" required />
+                                </div>
+
+                                <!-- Insere o painel para colocar seu local2 -->
+                                <div class="form-group">
+                                    <label>Destino 2: </label> <input class="form-control" id="to_places2" placeholder="Escreva um local" />
+                                    <input type="hidden" id="destination2" name="destination2" required />
+                                </div>
+
+                                <!-- Insere o painel para colocar seu local3 -->
+                                <div class="form-group">
+                                    <label>Destino 3: </label> <input class="form-control" id="to_places3" placeholder="Escreva um local" />
+                                    <input type="hidden" id="destination3" name="destination3" required />
+                                </div>
+
+                                <!-- Insere o painel para colocar seu local4 -->
+                                <div class="form-group">
+                                    <label>Destino 4: </label> <input class="form-control" id="to_places4" placeholder="Escreva um local" />
+                                    <input type="hidden" id="destination4" name="destination4" required />
+                                </div>
+
+                                <!-- Insere o painel para colocar seu local5 -->
+                                <div class="form-group">
+                                    <label>Destino 5: </label> <input class="form-control" id="to_places5" placeholder="Escreva um local" />
+                                    <input type="hidden" id="destination5" name="destination5" required />
+                                </div>
+
+                                <script>
+                                    $(function () {
+                                        // add input listeners
+                                        google.maps.event.addDomListener(window, 'load', function () {
+                                            var from_places = new google.maps.places.Autocomplete(document.getElementById('from_places'));
+                                            var to_places1 = new google.maps.places.Autocomplete(document.getElementById('to_places1'));
+                                            var to_places2 = new google.maps.places.Autocomplete(document.getElementById('to_places2'));
+                                            var to_places3 = new google.maps.places.Autocomplete(document.getElementById('to_places3'));
+                                            var to_places4 = new google.maps.places.Autocomplete(document.getElementById('to_places4'));
+                                            var to_places5 = new google.maps.places.Autocomplete(document.getElementById('to_places5'));
+
+                                            google.maps.event.addListener(from_places, 'place_changed', function () {
+                                                var from_place = from_places.getPlace();
+                                                var from_address = from_place.formatted_address;
+                                                $('#origin').val(from_address);
+                                            });
+
+                                            google.maps.event.addListener(to_places1, 'place_changed', function () {
+                                                var to_place1 = to_places1.getPlace();
+                                                var to_address1 = to_place1.formatted_address;
+                                                $('#destination1').val(to_address1);
+                                            });
+
+                                            google.maps.event.addListener(to_places2, 'place_changed', function () {
+                                                var to_place2 = to_places2.getPlace();
+                                                var to_address2 = to_place2.formatted_address;
+                                                $('#destination2').val(to_address2);
+                                            });
+
+                                            google.maps.event.addListener(to_places3, 'place_changed', function () {
+                                                var to_place3 = to_places3.getPlace();
+                                                var to_address3 = to_place3.formatted_address;
+                                                $('#destination3').val(to_address3);
+                                            });
+
+                                            google.maps.event.addListener(to_places4, 'place_changed', function () {
+                                                var to_place4 = to_places4.getPlace();
+                                                var to_address4 = to_place4.formatted_address;
+                                                $('#destination4').val(to_address4);
+                                            });
+
+                                            google.maps.event.addListener(to_places5, 'place_changed', function () {
+                                                var to_place5 = to_places5.getPlace();
+                                                var to_address5 = to_place5.formatted_address;
+                                                $('#destination5').val(to_address5);
+                                            });
+                                        });
+
+                                    });
+                                </script>
+
+                                <!-- Insere o painel para colocar o transporte -->
+                                <div class="container">
+                                    <p><span class="label label-default">Como você vai?</span></p>
+
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn btn-default">
+                                            <input type="radio" name=transporte value="driving" /> Carro
+                                        </label>
+
+                                        <label class="btn btn-default">
+                                            <input type="radio" name=transporte value="bicycling" /> Bike
+                                        </label>
+
+                                        <label class="btn btn-default">
+                                            <input type="radio" name=transporte value="walking" /> A pé
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Coloca o botão de entrar -->
+                                <div class="row">
+                                    <div class="col-sm-4 col-sm-offset-4">
+                                        <button type="submit" class="btn btn-lg btn-default">Calcular rota</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inserido aqui para carregar as páginas de maneira mais rápida -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+            <script src="/js/bootstrap.min.js"></script>
+
+</body>
+</html>
