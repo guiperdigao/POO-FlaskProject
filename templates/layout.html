@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="paper-plane.png">
+
+    <title>TripTipz</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <style>
+        body {
+          padding-top: 3.5rem;
+        }
+        #working-logo{
+          font-size: 2.5em;
+          color: #ededff;
+          text-shadow: 0 0 10px #224499;
+          font-weight: bold;
+          font-family: serif;
+          font-style: italic;
+        }
+        .bg-dark{
+          background-color: #6699ff;
+        }
+        img{
+          height: 1.25em;
+        }
+    </style>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" id="working-logo" href="#">TripTipz <img src="paper-plane.png"> </a>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/plan">Plan a Trip</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/review">Leave a Review</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {% if session.logged_in %}
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/logout">Logout</a></li>
+          {% else %}
+            <li><a href="/register">Register</a></li>
+            <li><a href="/login">Login</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      {% include '_messages.html' %}
+
+      <div class="jumbotron">
+        <div class="container">
+          {% block jumbo %}{% endblock% }
+        </div>
+      </div>
+
+      <div class="container">
+        <!-- Example row of columns -->
+        {% block content %}{% endblock% }
+
+      </div> <!-- /container -->
+
+    </main>
+
+    <footer class="container">
+      <p>&copy; Company 2017-2018</p>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../../../dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

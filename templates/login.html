@@ -1,0 +1,21 @@
+{% extends 'form-layout.html' %}
+{% block form %}
+<div class="text-center mb-4">
+  <img class="mb-4" src="paper-plane.png" alt="" width="72" height="72">
+  <h1 class="h3 mb-3 font-weight-normal">Log In</h1>
+  <p>Access your account.</p>
+</div>
+
+<div class="form-label-group">
+  <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+  <label for="inputUsername">Username</label>
+</div>
+
+<div class="form-label-group">
+  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+  <label for="inputPassword">Password</label>
+</div>
+
+
+<button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+{% endblock %}
