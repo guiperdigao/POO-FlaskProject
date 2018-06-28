@@ -76,7 +76,6 @@ def register():
         # Close connection
         cur.close()
 
-        flash('You are now registered and can log in', 'success')
         return redirect(url_for('login'))
     return render_template('signin.html', form=form)
 
@@ -103,7 +102,6 @@ def login():
                 session['logged_in'] = True
                 session['username'] = username
 
-                flash('You are now logged in', 'success')
                 return redirect(url_for('plan'))
             else:
                 error = 'Invalid login'
@@ -123,7 +121,6 @@ def is_logged_in(f):
         if 'logged_in' in session:
             return f(*args, **kwargs)
         else:
-            flash('Unauthorized, Please login', 'danger')
             return redirect(url_for('login'))
     return wrap
 
@@ -132,7 +129,6 @@ def is_logged_in(f):
 @is_logged_in
 def logout():
     session.clear()
-    flash('You are now logged out', 'success')
     return redirect(url_for('login'))
 
 @app.route('/plan')
