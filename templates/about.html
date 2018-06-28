@@ -1,0 +1,6 @@
+{% extends 'layout.html' %}
+
+{% block jumbo %}
+<h1 class="display-3">About us</h1>
+<p>Este projeto foi construido como projeto para a disciplina CES-22 de aplicacao web com banco de dados utilizando Flask. As distancias entre os locais de input sao calculadas com o API Matriz de Distancias do Google Maps, considerando um caminho feito a pe, de bike ou de carro. A partir dessas distancias cria se a arvore de custo minimo com o algoritmo de Prim. O ciclo a ser percorrido e encontrado a partir da leitura em preordem da arvore de custo minimo, o que garante que a solucao encontrada sera sempre menor que o dobro da solucao otima (que e um problema que nao se conhece solucao de tempo polinomial em n)  </p> 
+{% endblock %}
