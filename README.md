@@ -1,4 +1,5 @@
-# CES22_FlaskProject
+# CES22 FlaskProject
+Projeto do primeiro bimestre de CES22 (POO)
 
 Para rodar em localhost ativar as seguinte API's do Google:
   * Geocoding API
